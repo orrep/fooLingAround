@@ -1,18 +1,20 @@
-import { observable } from "mobx";
-import { action } from "mobx/lib/api/action";
+import { observable, action } from "mobx";
 import Column from "./Column";
-
+import Document from "./Document";
 export default class Row {
     id: number;
+    document: Document;
     @observable columns: Column[] = [];
     @observable index : number;
 
-    constructor(id, index, columns){
+    constructor(document : Document, id : number, index : number){
+        this.document = document;
         this.id = id;
         this.index = index;
+    }
 
-        columns.forEach(col => {
-            this.columns.push(new Column(col, this));
-        });
+    @action
+    AddColumn(width : number){
+        this.columns.push(new Column(this, width));
     }
 }

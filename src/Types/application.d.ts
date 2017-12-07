@@ -8,18 +8,19 @@ export interface IDocument {
 
 export interface IRow{
     id:number;
+    document: IDocument;
     index:number;
     columns: IColumn[];
 }
 
 export interface IColumn{
     width:number;
+    row: IRow;
     content:IColumnContent[];
 }
 
 export interface IColumnContent{
     id:number;
-    row: IRow;
     column:IColumn;
     type: string;
     values: any[];

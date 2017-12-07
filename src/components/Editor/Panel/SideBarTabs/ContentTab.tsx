@@ -15,7 +15,7 @@ function collect(connect, monitor){
 
 const columnContentSource = {
     beginDrag(props, monitor, component) {
-        return { type: props.type };
+        return { type: props.type, action: "ADD" };
     }
 }
 

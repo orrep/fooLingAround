@@ -1,19 +1,25 @@
 import { observable, computed, action } from "mobx";
 import Row from "./Row";
+import Column from "./Column";
 
 
 export default class Document {
     @observable rows : Row[] = [];
 
     @action
-    AddRow(index, columns){
+    AddRow(index :number, columnSpecs : number[]){
         const id = this.rows.length;
-        const newRow = new Row(id, id, columns);
+        const newRow = new Row(this, id, id);
+
+        columnSpecs.forEach(colWidth => {
+            newRow.AddColumn(colWidth);
+        });
+
         this.rows.splice(index, 0, newRow);
     }
 
     @action
-    MoveRow(oldIndex, newIndex){
+    MoveRow(oldIndex : number, newIndex : number){
         if(oldIndex == newIndex){
             return;
         }

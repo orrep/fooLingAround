@@ -9,8 +9,6 @@ import RowDrop from "./RowDrop";
 
 @observer
 export default class Document extends React.Component<any,any> {
-    
-
     render(){
 
         let rowsElements = [];

@@ -9,9 +9,8 @@ import { IColumn } from '../../../Types/application';
 const columnTarget = {
     drop(props, monitor) {
         const hoverIndex = props.dropIndex
-        console.log("drop");
-        console.log(monitor.getItem());
-        props.column.AddContent(hoverIndex, monitor.getItem().type);
+        const item = monitor.getItem();
+        props.column.Action(item.action, { hoverIndex: hoverIndex, item: item } );
     }
   };
 

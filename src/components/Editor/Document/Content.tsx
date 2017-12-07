@@ -30,12 +30,12 @@ function collect(connect, monitor){
 }
 
 const rowSource = {
-    beginDrag(props : IColumnContent, monitor, component) {
-        const { content } = this.props;
+    beginDrag(props, monitor, component) {
+        
         console.log("beginDrag");
-        console.log(content);
-        console.log(content.row);
-        return { row: content.row, column: content.column, id: content.id  };
+        console.log(props.content);
+        console.log(props.content.row);
+        return { column: props.content.column, id: props.content.id, action: "MOVE"  };
     }
 }
 
