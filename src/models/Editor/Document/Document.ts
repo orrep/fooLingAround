@@ -1,10 +1,11 @@
 import { observable, computed, action } from "mobx";
 import Row from "./Row";
 import Column from "./Column";
+import { IRow } from "../../../Types/application";
 
 
 export default class Document {
-    @observable rows : Row[] = [];
+    @observable rows : IRow[] = [];
 
     @action
     AddRow(index :number, columnSpecs : number[]){
@@ -24,7 +25,7 @@ export default class Document {
             return;
         }
 
-        let newRowArr : Row[];
+        let newRowArr : IRow[];
         if(oldIndex > newIndex){
             newRowArr = this.rows.map((row) => {
                     if(row.index >= newIndex && row.index < oldIndex){

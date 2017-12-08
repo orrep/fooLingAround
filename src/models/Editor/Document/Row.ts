@@ -1,10 +1,12 @@
 import { observable, action } from "mobx";
 import Column from "./Column";
 import Document from "./Document";
-export default class Row {
+import { IColumn, IRow } from "../../../Types/application";
+
+export default class Row implements IRow {
     id: number;
     document: Document;
-    @observable columns: Column[] = [];
+    @observable columns: IColumn[] = [];
     @observable index : number;
 
     constructor(document : Document, id : number, index : number){
