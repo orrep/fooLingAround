@@ -3,14 +3,22 @@ import { DropTarget } from 'react-dnd';
 import { DragAndDrop } from "../../../Constants/consts";
 import Column from './Column';
 import Content from '../../../models/Editor/Document/Content';
-import { IColumn } from '../../../Types/application';
+import { IColumn, IColumnContent } from '../../../Types/application';
 
 
 const columnTarget = {
-    drop(props, monitor) {
-        const hoverIndex = props.dropIndex
+    drop(props : IColumnDropTargetProps, monitor) {
         const item = monitor.getItem();
-        props.column.Action(item.action, { hoverIndex: hoverIndex, item: item } );
+
+        switch(item.type){
+            case "ADD":
+                props.column.AddContent(props.dropIndex, item.type);
+            break;
+            case "MOVE":
+                const content = item.content as IColumnContent;
+                content.column.MoveContent(props.dropIndex, props.column, content);
+            break;
+        }
     }
   };
 

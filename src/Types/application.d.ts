@@ -11,17 +11,23 @@ export interface IRow{
     document: IDocument;
     index:number;
     columns: IColumn[];
+
+    AddColumn(width : number);
 }
 
 export interface IColumn{
+    id:number;
     width:number;
     row: IRow;
     content:IColumnContent[];
+
+    AddContent(index : number, type : string);
+    MoveContent(index : number, targetColumn : IColumn, content : IColumnContent);
 }
 
 export interface IColumnContent{
     id:number;
     column:IColumn;
     type: string;
-    values: any[];
+    values?: any[];
 }

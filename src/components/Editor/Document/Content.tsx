@@ -35,7 +35,7 @@ const rowSource = {
         console.log("beginDrag");
         console.log(props.content);
         console.log(props.content.row);
-        return { column: props.content.column, id: props.content.id, action: "MOVE"  };
+        return { content: props.content, action: "MOVE"  };
     }
 }
 

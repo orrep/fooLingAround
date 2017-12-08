@@ -1,34 +1,34 @@
 import { observable, computed, action } from "mobx";
 import Content from "./Content";
-import Row from "./Row";
+import { IColumn, IRow, IColumnContent } from "../../../Types/application";
 
-export default class Column {
-    row: Row;
+import {GenerateId, MoveObjectInArray} from "../utils";
+
+export default class Column implements IColumn {
+    id: number;
+    row: IRow;
     width:number;
     
-    @observable content: Content[] = [];
+    @observable content: IColumnContent[] = [];
 
-    constructor(row : Row, width: number){
+    constructor(row : IRow, id:number, width: number){
         this.row = row;
         this.width = width;
     }
 
     @action
-    Action(action : string, data? : any){
-        switch(action){
-            case "ADD":
-                this.AddContent(data.hoverIndex, data.type);
-            break;
-            case "MOVE":
-
-            break;
-
-        }
+    AddContent(index : number, type : string){
+        this.content.splice(index, 0, new Content(this, GenerateId(), type));
     }
 
     @action
-    AddContent(index : number, type : string){
-        const id = this.content.length;
-        this.content.splice(index, 0, new Content(this, id, type));
+    MoveContent(index : number, targetColumn : IColumn, content : IColumnContent){
+        if(targetColumn.row.id === content.column.row.id){
+            if(targetColumn.id === content.column.id){
+                MoveObjectInArray(targetColumn.content, )
+            }else{
+
+            }
+        }
     }
 }
