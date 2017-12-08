@@ -16,12 +16,13 @@ export interface IRow{
 }
 
 export interface IColumn{
+    id:number;
     width:number;
     row: IRow;
     content:IColumnContent[];
 
     AddContent(index : number, type : string);
-    MoveContent(content : IColumnContent);
+    MoveContent(index : number, targetColumn : IColumn, content : IColumnContent);
 }
 
 export interface IColumnContent{

@@ -3,6 +3,8 @@ import Column from "./Column";
 import Document from "./Document";
 import { IColumn, IRow } from "../../../Types/application";
 
+import {GenerateId} from "../utils";
+
 export default class Row implements IRow {
     id: number;
     document: Document;
@@ -17,6 +19,6 @@ export default class Row implements IRow {
 
     @action
     AddColumn(width : number){
-        this.columns.push(new Column(this, width));
+        this.columns.push(new Column(this, GenerateId(), width));
     }
 }

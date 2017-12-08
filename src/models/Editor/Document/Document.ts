@@ -3,13 +3,15 @@ import Row from "./Row";
 import Column from "./Column";
 import { IRow } from "../../../Types/application";
 
+import {GenerateId} from "../utils";
 
 export default class Document {
     @observable rows : IRow[] = [];
 
+    
     @action
     AddRow(index :number, columnSpecs : number[]){
-        const id = this.rows.length;
+        const id = GenerateId();
         const newRow = new Row(this, id, id);
 
         columnSpecs.forEach(colWidth => {

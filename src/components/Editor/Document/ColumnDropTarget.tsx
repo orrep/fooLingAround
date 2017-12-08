@@ -12,11 +12,11 @@ const columnTarget = {
 
         switch(item.type){
             case "ADD":
-                (props.column as IColumn).AddContent(props.dropIndex, item.type);
+                props.column.AddContent(props.dropIndex, item.type);
             break;
             case "MOVE":
                 const content = item.content as IColumnContent;
-                content.column.MoveContent(content);
+                content.column.MoveContent(props.dropIndex, props.column, content);
             break;
         }
     }
