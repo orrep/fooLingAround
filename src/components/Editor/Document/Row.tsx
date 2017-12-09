@@ -38,23 +38,21 @@ export default class Row extends React.Component<IRowProps, any>{
     render(){
         const { row, connectDragSource, isDragging, connectDragPreview  } = this.props;
         const { hoverActive } = this.state;
-        let hoverStyle = (hoverActive || isDragging ? 
-        {position: "absolute", top: 0, bottom: 0, right: 0, left: 0, outline: "2px solid"} : 
-        {position: "absolute", top: 0, bottom: 0, right: 0, left: 0});
+        const hoverState = hoverActive || isDragging ? " active": "";
+       
 
         return (
             <div style={{ position: "relative" }}>
-             <div onMouseEnter={() => this.mouseEnter()} onMouseLeave={() => this.mouseLeave()} style={hoverStyle as any} >
-                    {connectDragSource(<div>DRAG</div>)}
+             <div className={"row-hover" + hoverState}  onMouseEnter={() => this.mouseEnter()} onMouseLeave={() => this.mouseLeave()} >
+                    {connectDragSource(<div className="row-draghandle"><i className="fa fa-arrows" aria-hidden="true"></i></div>)}
                         id: {row.id} 
                         <br/>
                         index: {row.index}
             </div>
                 <div className="container" >
                     <div className="row" style={{ minHeight: 100 }}>
-                        {row.columns.map((column, i) => { 
-                            // return (<div key={i} className={`col-${columWidth}`}><div className="templateContent">DROP CONTENT HERE</div></div> )
-                            return <Column key={i} rowIndex={row.index} columnRowIndex={i} column={column} />;
+                        {row.columns.map((column) => { 
+                            return <Column key={column.id} column={column} />;
                         })}
                     </div>
                 </div>

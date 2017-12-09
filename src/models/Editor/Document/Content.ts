@@ -5,10 +5,10 @@ import { IColumn, IColumnContent } from "../../../Types/application";
 
 export default class Content implements IColumnContent {
     id:number;
-    column:IColumn;
+    @observable column:IColumn;
     type:string;
 
-    constructor(column:IColumn, id : number, type : string){
+    constructor(column:IColumn, id : number,type : string){
         this.column = column;
         this.id = id;
         this.type = type;

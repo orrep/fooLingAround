@@ -48,7 +48,7 @@ export default class RowDrop extends React.Component<IRowDrop,any> {
 
     render(){
         const { connectDropTarget, isOver, canDrop } = this.props;
-        return connectDropTarget(<div><label className={canDrop ? "row-droptarget-active" : "row-droptarget"} data-name="Drag it here"></label></div>
+        return connectDropTarget(<div><label className={canDrop ? "row-droptarget active" : "row-droptarget"} data-name="Drag it here"></label></div>
         );
     }
 }

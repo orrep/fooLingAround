@@ -5,6 +5,7 @@ import { IApplication } from "../Types/application";
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+
 interface AppProps{
     app: IApplication;
 }
