@@ -7,15 +7,13 @@ import { IColumnContent, IColumn } from '../../../Types/application';
 class Image extends React.Component<any,any>{
 
     render(){
-        const { connectDragSource, isDragging, connectDragPreview  } = this.props;
-        return (<div>IMAGE {connectDragSource(<div style={{ display: "inline-block" }} >DRAG</div>)}</div>)
+        return (<div>IMAGE </div>)
     }
 }
 
 class Text extends React.Component<any,any>{
     render(){
-        const { connectDragSource, isDragging, connectDragPreview  } = this.props;
-        return (<div>TEXT  {connectDragSource(<div>DRAG</div>)}</div>)
+        return (<div>TEXT</div>)
     }
 }
 
@@ -49,19 +47,45 @@ interface IContentWrapperProps{
 
 @DragSource(DragAndDrop.COLUMN_CONTENT, rowSource, collect)
 export default class ContentWrapper extends React.Component<IContentWrapperProps,any>{
-
+    constructor(props){
+        super(props);
+        this.state = {
+            hoverActive: false
+        };
+    }
+    
     render(){
         const { connectDragSource, isDragging, connectDragPreview, content  } = this.props;
+        const { hoverActive } = this.state;
+        const hoverState = hoverActive || isDragging ? " active": "";
 
-        return(this._getContentComponent(content, connectDragSource));
+        // return(<div>{this._getContentComponent(content, connectDragSource)}</div>);
+
+        return(
+
+            <div style={{ position: "relative" }}>
+                <div className={"content-hover" + hoverState}  onMouseEnter={() => this.mouseEnter()} onMouseLeave={() => this.mouseLeave()} >
+                        {connectDragSource(<div className="content-draghandle"><i className="fa fa-arrows" aria-hidden="true"></i></div>)}
+                </div>
+                {this._getContentComponent(content)}
+            </div>
+        );
     }
-_getContentComponent(content: IColumnContent, connectDragSource : any){
+    _getContentComponent(content: IColumnContent){
         switch(content.type){
             case "TEXT":
-                return <Text key={content.id} connectDragSource={connectDragSource} />;
+                return <Text key={content.id} />;
             case "IMAGE":
-                return <Image key={content.id} connectDragSource={connectDragSource} />;
+                return <Image key={content.id}  />;
         }
+    }
+
+    mouseEnter = () =>{
+        this.setState({ hoverActive: true });
+    }
+
+    mouseLeave = () => {
+        this.setState({ hoverActive: false });
     }
 }
 

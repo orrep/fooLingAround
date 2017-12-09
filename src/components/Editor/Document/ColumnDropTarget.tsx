@@ -4,13 +4,14 @@ import { DragAndDrop } from "../../../Constants/consts";
 import Column from './Column';
 import Content from '../../../models/Editor/Document/Content';
 import { IColumn, IColumnContent } from '../../../Types/application';
+import { action } from 'mobx';
 
 
 const columnTarget = {
     drop(props : IColumnDropTargetProps, monitor) {
         const item = monitor.getItem();
 
-        switch(item.type){
+        switch(item.action){
             case "ADD":
                 props.column.AddContent(props.dropIndex, item.type);
             break;
@@ -44,7 +45,7 @@ export default class ColumnDropTarget extends React.Component<IColumnDropTargetP
 
     render(){
         const { connectDropTarget, isOver, canDrop } = this.props;
-        return connectDropTarget(<div><label className={canDrop ? "row-droptarget-active" : "row-droptarget"} data-name="Drag it here"></label></div>
+        return connectDropTarget(<div><label className={canDrop ? "content-droptarget active" : "content-droptarget"} data-name="Drag it here"></label></div>
         );
     }
 }

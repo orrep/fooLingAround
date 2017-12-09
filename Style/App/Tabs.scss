@@ -1,0 +1,29 @@
+.row-tab{
+    .templateWrapper{
+        height: 70px;
+        padding: 10px;
+        background-color: #FFF;
+        cursor: move;
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+        margin-bottom: 15px;
+        border: 1px solid #DDD;
+        border-radius: 4px;
+        transition-duration: .15s;
+        transition-property: box-shadow;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .templateColumn{
+        background-color: #EEE;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .templateContent{
+        background-color: #DDD;
+        height: 100%;
+    }
+}

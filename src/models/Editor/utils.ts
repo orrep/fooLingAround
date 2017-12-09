@@ -8,20 +8,28 @@ export const GenerateId = function(){
 }
 
 
-export const MoveObjectInArray = (arr : any[], old_index : number, new_index : number) => {
-    while(old_index < 0){
-        old_index += arr.length;
-    }
-    while (new_index < 0){
-        new_index += arr.length;
-    }
+export const MoveObjectInArray = (object:any, arr : any[], new_index : number) => {
+    arr.splice(new_index, 0, arr.splice(arr.indexOf(object), 1)[0]);
+    return arr;
+}
 
-    if(new_index >= arr.length){
-        let k = new_index - arr.length;
-        while((k--) + 1){
-            arr.push(undefined);
+export const TakeObjectFromArray = (object:any, arr:any[]) => {
+    return arr.splice(arr.indexOf(object), 1)[0];
+}
+
+export const TakeObjectWithIdFromArray = (id:number, arr:any[]) => {
+    let index = 0;
+    arr.forEach(ob => {
+        if(ob.id === index){
+            return;
         }
-    }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+        index++;
+    });
+
+    return arr.splice(index, 1)[0];
+}
+
+export const InsertObjectInArray = (insertAtIndex:number, object:any, arr:any[]) => {
+    arr.splice(insertAtIndex, 0, object);
     return arr;
 }
