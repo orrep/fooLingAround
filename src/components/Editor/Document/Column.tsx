@@ -40,8 +40,10 @@ export default class Column extends React.Component<IColumnContentDropTargetProp
 
         return(
         <div className={`col-${column.width}`}>
-            <ColumnDropTarget column={column} dropIndex={0} />
-            {columnContents}
+            {columnContents.length !== 0 ? columnContents
+            :
+                <ColumnDropTarget column={column} dropIndex={0} noContent={true} />
+            }
         </div>);
     }
 

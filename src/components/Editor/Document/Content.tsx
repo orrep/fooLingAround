@@ -1,8 +1,8 @@
 import * as React from "react";
-import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd';
 import { DragAndDrop } from "../../../Constants/consts";
 import { IColumnContent, IColumn } from '../../../Types/application';
+import TextContent from './ContentComponents/Text';
 
 class Image extends React.Component<any,any>{
 
@@ -74,7 +74,7 @@ export default class ContentWrapper extends React.Component<IContentWrapperProps
     _getContentComponent(content: IColumnContent){
         switch(content.type){
             case "TEXT":
-                return <Text key={content.id} />;
+                return <TextContent key={content.id} content={content} />;
             case "IMAGE":
                 return <Image key={content.id}  />;
         }

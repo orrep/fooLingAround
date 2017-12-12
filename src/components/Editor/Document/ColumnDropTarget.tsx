@@ -38,14 +38,21 @@ interface IColumnDropTargetProps{
 
     column: IColumn;
     dropIndex:number;
+    noContent?:boolean;
 }
 
 @DropTarget(DragAndDrop.COLUMN_CONTENT, columnTarget, collect)
 export default class ColumnDropTarget extends React.Component<IColumnDropTargetProps,any> {
 
     render(){
-        const { connectDropTarget, isOver, canDrop } = this.props;
-        return connectDropTarget(<div><label className={canDrop ? "content-droptarget active" : "content-droptarget"} data-name="Drag it here"></label></div>
+        const { connectDropTarget, isOver, canDrop, noContent } = this.props;
+        return connectDropTarget(
+            <div style={{position: "relative"}}>
+                {noContent ? 
+                    <div className={"column-nocontent" + (canDrop ?  " active" : "")} data-name="Drag it here">No content</div>
+                :
+                     <div className={canDrop ? "content-droptarget active" : "content-droptarget"} data-name="Drag it here"></div>}
+            </div>
         );
     }
 }

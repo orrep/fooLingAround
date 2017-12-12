@@ -1,0 +1,11 @@
+#root .app-content{
+    .row{
+        margin: 0;
+        padding: 0;
+    }
+
+    div[class^="col"]{
+        margin: 0;
+        padding: 0;
+    }
+}

@@ -25,9 +25,13 @@ export interface IColumn{
     MoveContent(index : number, targetColumn : IColumn, content : IColumnContent);
 }
 
+interface IValues{
+    [key: string]: any
+}
+
 export interface IColumnContent{
     id:number;
     column:IColumn;
     type: string;
-    values?: any[];
+    values?: IValues;
 }
